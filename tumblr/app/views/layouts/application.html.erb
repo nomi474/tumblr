@@ -2,13 +2,35 @@
 <html>
   <head>
     <title>Tumblr</title>
-    <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+  	<div id='sidebar'>
+  		<ul>
+  			<li class='category'><%= link_to 'Tumblr', root_path %></li>
+  			<li><%= link_to 'Posts', root_path %></li>
+  			<li class=''>About</li>
+  		</ul>
+  		<p class='sign_in'>User Login</p>
+  	</div>
+
+  	<div id = 'main_content'>
+  		<div id=''>
+  			<p>Post Feed</p>
+  			<div class="button">
+  				<button class="button"><%= link_to "Make Post", new_post_path %></button>
+  				<button class="button"><%= link_to "Log out", new_post_path %></button>
+  			</div>
+  		</div>
+  		<% flash.each do |name, msg| %>
+  			<%=content_tag(:div, msg, class: "alert") %>
+  		<% end %>
+  		<%= yield %>
+  	</div>
   </body>
 </html>
